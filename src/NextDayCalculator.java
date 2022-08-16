@@ -5,11 +5,14 @@ public class NextDayCalculator {
 
     public static String getNextDay(int dayTest, int monthTest, int yeahTest) {
         String result;
-        int lastOfMonth = getLastOfMonth(monthTest,yeahTest);
-        if (dayTest == lastOfMonth) {
+        int lastOfMonth = getLastOfMonth(monthTest, yeahTest);
+        if (dayTest == lastOfMonth && !checkLastOfYear(dayTest, monthTest)) {
             result = FIRSTOFMONTH + CONCATENATION + (++monthTest) + CONCATENATION + yeahTest;
+        } else if (checkLastOfYear(dayTest, monthTest)) {
+            return FIRSTOFMONTH + CONCATENATION + FIRSTOFMONTH + CONCATENATION + ++yeahTest;
         } else {
             result = (++dayTest) + CONCATENATION + monthTest + CONCATENATION + yeahTest;
+
         }
         return result;
     }
@@ -43,11 +46,16 @@ public class NextDayCalculator {
     static boolean checkPrimeYear(int yeahTest) {
         return yeahTest % 4 == 0 && yeahTest % 100 != 0 || yeahTest % 400 == 0;
     }
+
     static int dayMonth2(int yeahTest) {
         boolean check = checkPrimeYear(yeahTest);
         if (check) {
             return 29;
         }
         return 28;
+    }
+
+    static boolean checkLastOfYear(int dayTest, int monthTest) {
+        return dayTest == 31 && monthTest == 12;
     }
 }
