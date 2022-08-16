@@ -5,7 +5,7 @@ public class NextDayCalculator {
 
     public static String getNextDay(int dayTest, int monthTest, int yeahTest) {
         String result;
-        int lastOfMonth = getLastOfMonth(monthTest);
+        int lastOfMonth = getLastOfMonth(monthTest,yeahTest);
         if (dayTest == lastOfMonth) {
             result = FIRSTOFMONTH + CONCATENATION + (++monthTest) + CONCATENATION + yeahTest;
         } else {
@@ -14,7 +14,7 @@ public class NextDayCalculator {
         return result;
     }
 
-    private static int getLastOfMonth(int monthTest) {
+    private static int getLastOfMonth(int monthTest, int yeahTest) {
         int lastOfMonth = 0;
         switch (monthTest) {
             case 1:
@@ -33,9 +33,21 @@ public class NextDayCalculator {
                 lastOfMonth = 30;
                 break;
             case 2:
+                return dayMonth2(yeahTest);
             default:
 
         }
         return lastOfMonth;
+    }
+
+    static boolean checkPrimeYear(int yeahTest) {
+        return yeahTest % 4 == 0 && yeahTest % 100 != 0 || yeahTest % 400 == 0;
+    }
+    static int dayMonth2(int yeahTest) {
+        boolean check = checkPrimeYear(yeahTest);
+        if (check) {
+            return 29;
+        }
+        return 28;
     }
 }

@@ -34,4 +34,24 @@ public class NextDayCalculatorTest {
         String result = NextDayCalculator.getNextDay(dayTest,monthTest,yeahTest);
         assertEquals(expected,result);
     }
+    @Test
+    @DisplayName("case 28/2/2022")
+    void testDay28Month2Yeah2022() {
+        int dayTest = 28;
+        int monthTest = 2;
+        int yeahTest = 2022;
+        String expected = "1/3/2022";
+        String result = NextDayCalculator.getNextDay(dayTest,monthTest,yeahTest);
+        assertEquals(expected,result);
+    }
+    @Test
+    @DisplayName("case 29/2/2022")
+    void testDay29Month2Yeah2022() {
+        int dayTest = 28;
+        int monthTest = 2;
+        int yeahTest = 2022;
+        String expected = "1/3/2022";
+        String result = NextDayCalculator.getNextDay(dayTest,monthTest,yeahTest);
+        assertEquals(expected,result);
+    }
 }
